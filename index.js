@@ -10,17 +10,19 @@ const app = express();
 
 app.use(cors());
 
+//parciar objetos json
+app.use(express.json());
+
 //Estableciendo sesión a la BD
 dbConection();
 //console.log(process.env);
 
+
 //rutas de la API proyectos
-app.get('/', (req,res)=>{
-    res.status(400).json({
-        ok:true,
-        msg:'Bienvenidos a NodeJS'
-    })
-})
+app.use('/api/usuarios',require('./routes/usuarios.routes'));
+app.use('/api/login', require('./routes/auth.routes'));
+
+
 //codigo para desplegar el servidor
 
 app.listen(process.env.PORT,()=>{
